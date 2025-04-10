@@ -1,0 +1,16 @@
+[
+  {
+    "username": "ana.ionescu",
+    "password": "student123",
+    "role": "student",
+    "phone": "+40 721 123 456",
+    "email": "ana.ionescu@example.com"
+  },
+  {
+    "username": "andrei.popescu",
+    "password": "prof123",
+    "role": "teacher",
+    "phone": "+40 743 987 654",
+    "email": "andrei.popescu@example.com"
+  }
+]

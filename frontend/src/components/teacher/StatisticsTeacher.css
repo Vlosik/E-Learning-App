@@ -1,0 +1,192 @@
+.statistics {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.statistics::-webkit-scrollbar {
+    display: none;
+}
+
+.statistics .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2%;
+    background: rgba(231, 214, 255, 0.6);
+    flex: 0 0 9%;
+}
+
+.statistics .navbar .logo {
+    padding-top: 0.5%;
+    flex: 0 0 20%;
+}
+
+.statistics .navbar .logo img {
+    width: 20%;
+}
+
+.statistics .navbar .search-field {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.statistics .navbar .input-box {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.statistics .navbar .input-box input {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    color : #4B5563;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+}
+
+.statistics .navbar .lists {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1%;
+}
+
+.statistics .navbar .lists ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+.statistics .navbar .links {
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    font-size: 30px;
+}
+
+.statistics .stats {
+    margin-top: 0.5%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.statistics .chart-section {
+    flex: 0 0 40%;
+    width: 100%;
+    max-width: 800px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.statistics .chart-wrapper {
+    height: 300px;
+}
+
+.statistics .calendar-student-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    width: 100%;
+    max-width: 800px;
+    flex: 1;
+}
+
+.statistics .calendar-left {
+    padding: 1rem;
+    border-radius: 12px;
+    overflow-y: auto;
+    align-items: flex-start;
+}
+
+.statistics .calendar-right {
+    background: #f8f8f8;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 220px;
+    overflow-y: auto;
+    margin-bottom: 1%;
+}
+
+.statistics .calendar-right h4 {
+    margin: 0 0 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.statistics .calendar-right ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.statistics .calendar-right li {
+    background-color: #ffffff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.statistics .calendar-right li:hover {
+    background-color: #f0f0ff;
+}
+
+.statistics .calendar-right p {
+    font-size: 1rem;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.statistics .custom-calendar {
+    background-color: rgba(231, 214, 255, 0.95);
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    color: #4B5563;
+}
+
+.statistics .react-datepicker__day--selected,
+.statistics .custom-calendar .react-datepicker__day--in-range,
+.statistics .custom-calendar .react-datepicker__day--in-selecting-range {
+    background-color: #cbb7ff;
+    color: white;
+    border-radius: 50%;
+}
+
+.statistics .custom-calendar .react-datepicker__day:hover {
+    background-color: #bba0ff;
+    color: white;
+}
+
+.statistics .custom-calendar .react-datepicker__header {
+    background-color: rgba(231, 214, 255, 0.95);
+    border-bottom: none;
+}
+
+

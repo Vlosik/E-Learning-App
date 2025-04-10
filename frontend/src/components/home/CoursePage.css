@@ -1,0 +1,200 @@
+.course-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.course-page .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2%;
+    background: rgba(231, 214, 255, 0.6);
+    flex: 0 0 10%;
+}
+
+.course-page .navbar .logo {
+    padding-top: 0.5%;
+    flex: 0 0 20%;
+}
+
+.course-page .navbar .logo img {
+    width: 20%;
+}
+
+.course-page .navbar .search-field {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.course-page .navbar .input-box {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.course-page .navbar .input-box input {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    color : #4B5563;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+}
+
+.course-page .navbar .lists {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1%;
+}
+
+.course-page .navbar .lists ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+.course-page .navbar .links {
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    font-size: 30px;
+}
+
+.course-page .course {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.course-page .course .icon {
+    color: #d6bbfb;
+}
+
+.course-page .course .text {
+    color: #4B5563;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.course-page .course .top-side {
+    display: flex;
+    flex: 0 0 60%;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin: 0.1% auto 0 auto;
+    flex-direction: row;
+    border-bottom: 2px solid #d6bbfb;
+}
+
+.course-page .course .top-side .course-image {
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    flex: 0 0 50%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.course-page .course .top-side .course-title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 4%;
+    text-align: left;
+    color: #4B5563;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.course-page .course .top-side .course-details {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.course-page .course-details .exit-icon {
+    position: absolute;
+    top : 1%;
+    right: 2%;
+    font-size: 40px;
+    z-index: 2;
+    color: #d6bbfb;
+}
+
+.course-page .course-details .exit-icon:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
+.course-page .course .top-side .course-details .course-stats {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    padding-right: 15%;
+}
+
+.course-page .course .top-side .course-details .course-stats .stats-right {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #4B5563;
+}
+
+.course-page .course .bottom-side {
+    flex: 0 0 45%;
+    padding-left: 3%;
+    position: relative;
+}
+
+.course-page .course .bottom-side h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.course-page .course .bottom-side h1 {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.6;
+    padding-top: 1%;
+    padding-left: 4%;
+}
+
+.course-page .course .bottom-side .enroll-link {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    background-color: #d6bbfb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.course-page .course .bottom-side .enroll-link:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
+}
