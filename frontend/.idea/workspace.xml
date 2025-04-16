@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0bde51-4f03-40a3-b2fc-c9ac30253a98" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/RegisterPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/RegisterPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/ContactStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ContactStudent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -88,6 +92,8 @@
       <workItem from="1744130097143" duration="144000" />
       <workItem from="1744266679971" duration="460000" />
       <workItem from="1744306380822" duration="64000" />
+      <workItem from="1744807226258" duration="27000" />
+      <workItem from="1744813737251" duration="3357000" />
     </task>
     <servers />
   </component>

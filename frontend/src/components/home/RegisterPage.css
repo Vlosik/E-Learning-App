@@ -16,6 +16,7 @@
     position: absolute;
     top: 4%;
     left: 2%;
+    filter : drop-shadow(3px 2px 1px black);
 }
 
 .register .main-box {

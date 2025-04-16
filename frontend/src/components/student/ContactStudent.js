@@ -31,10 +31,10 @@ class ContactStudent extends Component {
                     </div>
                     <div className="lists">
                         <ul>
-                            <li><Link to="/home/teacher/profile" className="links">Profile</Link></li>
-                            <li><Link to="/home/teacher" className="links">Home</Link></li>
-                            <li><Link to="/home/teacher/statistics" className="links">Statistics</Link></li>
-                            <li><Link to="/home/teacher/contact" className="links">Contact</Link></li>
+                            <li><Link to="/home/student/profile" className="links">Profile</Link></li>
+                            <li><Link to="/home/student" className="links">Home</Link></li>
+                            <li><Link to="/home/student/courses" className="links">Courses</Link></li>
+                            <li><Link to="/home/student/contact" className="links">Contact</Link></li>
                         </ul>
                     </div>
                 </div>

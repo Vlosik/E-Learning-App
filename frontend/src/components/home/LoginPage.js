@@ -2,40 +2,41 @@ import {Component} from "react";
 import "./LoginPage.css";
 import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
-import users from "../data/login.json";
 import history from "../../history";
+import axiosInstance from "../../axios";
 class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username : '',
             password : '',
-            users : users
         }
     }
 
     login = (e) => {
         e.preventDefault();
-        const { username, password, users } = this.state;
+        const { username, password} = this.state;
 
-        const foundUser = users.find(
-            user => user.username === username && user.password === password
-        );
+        const user = {
+            username,
+            password,
+        }
 
-        if (foundUser) {
-            if(foundUser.role === "student"){
-                sessionStorage.setItem("currentUser", JSON.stringify(foundUser));
+        axiosInstance.post("/api/users/login", user).then((response) => {
+            if(response.data.user.role === "student"){
+                sessionStorage.setItem("currentUser", JSON.stringify(response.data.user));
                 history.push("/home/student");
                 window.location.reload();
             }
             else{
-                sessionStorage.setItem("currentTeacher", JSON.stringify(foundUser));
+                sessionStorage.setItem("currentTeacher", JSON.stringify(response.data.user));
                 history.push("/home/teacher");
                 window.location.reload();
             }
-        } else {
-            alert("Date invalide");
-        }
+        }).catch((error) => {
+            console.error("Error during login:", error);
+            alert(error.response.data.message);
+        });
     };
 
 

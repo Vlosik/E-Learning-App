@@ -2,6 +2,8 @@ import {Component} from "react";
 import "./RegisterPage.css";
 import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
+import history from "../../history";
+import axiosInstance from "../../axios";
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -21,6 +23,26 @@ class RegisterPage extends Component {
 
     }
 
+    register = (e) => {
+        e.preventDefault();
+        const { username, password, email, role, phone } = this.state;
+        const user = {
+            username,
+            password,
+            email,
+            phone,
+            role
+        }
+
+        axiosInstance.post("/api/users/register", user).then((response) => {
+            history.push("/login");
+            window.location.reload();
+        }).catch((error) => {
+            console.error("Error during login:", error);
+            alert(error.response.data.message);
+        });
+    };
+
     render() {
         return (
             <div className="register">
@@ -29,7 +51,7 @@ class RegisterPage extends Component {
                 </div>
                 <div className="main-box">
                     <div className="left-box">
-                        <form onSubmit={this.login}>
+                        <form onSubmit={this.register}>
                             <h1>Enter your credentials</h1>
                             <div className="input-box">
                                 <input type="text" placeholder="Username" required
@@ -61,7 +83,7 @@ class RegisterPage extends Component {
                                     <div className="selector"></div>
                                 </div>
                             </div>
-                            <button type="submit" className="login-button">Login</button>
+                            <button type="submit" className="login-button">Register</button>
                             <Link to="/login" className="login-link">Already have an account? Log in</Link>
                         </form>
                     </div>
