@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0bde51-4f03-40a3-b2fc-c9ac30253a98" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/service/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/service/userService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/RegisterPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/RegisterPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/RegisterPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/ContactStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ContactStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data/courses.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data/login.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/CoursesStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/CoursesStudent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/CoursesStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/CoursesStudent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/StudentCoursePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentCoursePage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/StudentCoursePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentCoursePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/StudentHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentHome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/StudentHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherHome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherHome.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +106,9 @@
       <workItem from="1744306380822" duration="64000" />
       <workItem from="1744807226258" duration="27000" />
       <workItem from="1744813737251" duration="3357000" />
+      <workItem from="1744880353372" duration="5182000" />
+      <workItem from="1744892489318" duration="12000" />
+      <workItem from="1744978149383" duration="11299000" />
     </task>
     <servers />
   </component>

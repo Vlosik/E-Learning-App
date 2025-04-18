@@ -5,11 +5,11 @@ import {Link} from "react-router-dom";
 import { FaTag } from "react-icons/fa6";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-import courses from "../data/courses.json";
 import { MdRefresh } from "react-icons/md";
 import { CiStar } from "react-icons/ci";
 import history from "../../history";
 import CalendarPicker from "../home/CalendarPicker";
+import axiosInstance from "../../axios";
 
 class StudentHome extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class StudentHome extends Component {
             startDate : '',
             endDate : '',
             showCalendar : false,
-            courses : courses,
+            courses : [],
             currentPage: 1,
             coursesPerPage: 6,
             language: ""
@@ -29,7 +29,18 @@ class StudentHome extends Component {
     }
 
     componentDidMount() {
+        this.getCourses();
         this.getLocation();
+    }
+
+    getCourses() {
+        axiosInstance.get("/api/courses/getAll").then((response) => {
+            this.setState({courses: response.data});
+            console.log(response.data);
+        }).catch((error) => {
+            console.error("Error during login:", error);
+            alert(error.response.data.message);
+        });
     }
 
     getLocation() {
@@ -96,13 +107,13 @@ class StudentHome extends Component {
         const { currentPage, coursesPerPage, courses, search, field, language,startDate,endDate } = this.state;
 
         const filteredCourses = courses.filter(course => {
-            const matchesTitle = course.Title.toLowerCase().includes(search.toLowerCase());
-            const matchesField = field === '' || course.Field.toLowerCase() === field.toLowerCase();
+            const matchesTitle = course.title.toLowerCase().includes(search.toLowerCase());
+            const matchesField = field === '' || course.field.toLowerCase() === field.toLowerCase();
 
             let matchesDate = true;
             if (startDate && endDate) {
-                const courseStart = new Date(course.StartDate);
-                const courseEnd = new Date(course.EndDate);
+                const courseStart = new Date(course.startDate);
+                const courseEnd = new Date(course.endDate);
                 matchesDate =
                     courseStart >= startDate &&
                     courseEnd <= endDate;
@@ -112,17 +123,17 @@ class StudentHome extends Component {
         });
 
         const sortedCourses = filteredCourses.sort((a, b) => {
-            if (a.Slots === 0 && b.Slots !== 0) return 1;
-            if (a.Slots !== 0 && b.Slots === 0) return -1;
+            if (a.slots === 0 && b.slots !== 0) return 1;
+            if (a.slots !== 0 && b.slots === 0) return -1;
 
-            const langA = a.Language.toLowerCase();
-            const langB = b.Language.toLowerCase();
+            const langA = a.language.toLowerCase();
+            const langB = b.language.toLowerCase();
             const selectedLang = language.toLowerCase();
 
             if (langA === selectedLang && langB !== selectedLang) return -1;
             if (langA !== selectedLang && langB === selectedLang) return 1;
 
-            return a.Title.localeCompare(b.Title);
+            return a.title.localeCompare(b.title);
         });
 
         const startIndex = (currentPage - 1) * coursesPerPage;
@@ -180,14 +191,16 @@ class StudentHome extends Component {
                 <div className="courses">
                     {this.getPaginatedCourses().length > 0 ? (
                         this.getPaginatedCourses().map((course) => (
-                            <div key={course.id} className={`course-card ${course.Slots === 0 ? 'unavailable' : ''}`} role="button" onClick={() => this.handleGoToCourse(course)}>
+                            <div key={course.id} className={`course-card ${course.slots === 0 ? 'unavailable' : ''}`} role="button" onClick={() => this.handleGoToCourse(course)}>
                                 <CiStar className="star" role="button" onClick={this.handleAddFavourite}/>
-                                <img src={`/${course.Image}`} alt={course.Title} className="course-image" />
-                                <h3 className="course-title">{course.Title}</h3>
+                                <img src={`data:image/png;base64,${course.image}`} alt={course.title} className="course-image"/>
+                                <h3 className="course-title">{course.title}</h3>
                             </div>
                         ))
                     ) : (
-                        <div className="no-courses">Nu exista cursuri disponibile</div>
+                        <div className="no-courses">
+                            <h2>Nu exista cursuri disponibile</h2>
+                        </div>
                     )}
                 </div>
             </div>

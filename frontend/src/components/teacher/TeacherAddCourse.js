@@ -4,6 +4,8 @@ import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
 import { FaBookOpen, FaPen, FaInfoCircle, FaListUl, FaCalendarDay , FaClock, FaImage, FaUsers, FaGlobe, FaTag } from 'react-icons/fa';
 import { FiUpload } from 'react-icons/fi';
+import axiosInstance from "../../axios";
+import history from "../../history";
 
 class TeacherAddCourse extends Component {
     constructor(props) {
@@ -24,7 +26,33 @@ class TeacherAddCourse extends Component {
     }
 
     handleAddCourse = () => {
+        const { title, description, field, startDate, finishDate, sessions, slots, language, price, image} = this.state;
 
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('field', field);
+        formData.append('startDate', startDate);
+        formData.append('endDate', finishDate);
+        formData.append('sessions', sessions);
+        formData.append('slots', slots);
+        formData.append('language', language);
+        formData.append('price', price);
+        formData.append('image', image);
+        formData.append('teacher', this.state.teacher.id);
+
+        console.log(formData);
+        axiosInstance.post("/api/courses/insert", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then((response) => {
+            history.push("/home/teacher");
+            window.location.reload();
+        }).catch((error) => {
+            console.error("Error during course creation:", error.response?.data || error.message);
+            alert(error.response?.data?.message || "An error occurred");
+        });
     }
 
     render() {

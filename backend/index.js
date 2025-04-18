@@ -3,13 +3,17 @@ const cors = require('cors');
 const app = express();
 
 const userRoutes = require('./routes/userRoutes');
+const courseRoutes = require('./routes/courseRoutes');
+const enrollRoutes = require('./routes/enrollRoutes');
 
 const { connect, sequelize } = require('./db');
-const User = require('./model/User');
+const {User, Course, Enroll} = require('./model');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/users', userRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/enrolls', enrollRoutes);
 
 const PORT = 3010;
 

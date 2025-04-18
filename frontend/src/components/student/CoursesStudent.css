@@ -227,3 +227,11 @@
     font-weight: 600;
     pointer-events: none;
 }
+
+.student-courses .courses .no-courses h2 {
+    align-items: center;
+    justify-content: center;
+    transform: translateX(+30%);
+    margin-top: 10%;
+    font-size: 32px;
+}
