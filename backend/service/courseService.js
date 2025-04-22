@@ -7,35 +7,63 @@ const addCourse = async (courseData) => {
 }
 
 const getCourses = async () => {
-    const courses = await courseRepo.getCourses();
+    const courses = await courseRepo.getCourses(); 
 
     return courses.map(course => {
-        const courseJson = course.toJSON();
+        const courseData = course.toJSON();
 
-        if (courseJson.image) {
-            courseJson.image = Buffer.from(courseJson.image).toString('base64');
+        if (courseData.image) {
+            courseData.image = Buffer.from(courseData.image).toString('base64');
         }
 
-        return courseJson;
+        courseData.percentage = courseData.Discount ? courseData.Discount.percentage : 0;
+
+        delete courseData.Discount;
+
+        return courseData;
     });
-}
+};
 
 const getCoursesByTeacher = async (teacherId) => {
     const courses = await courseRepo.getCoursesByTeacher(teacherId);
 
     return courses.map(course => {
-        const courseJson = course.toJSON();
+        const courseData = course.toJSON();
 
-        if (courseJson.image) {
-            courseJson.image = Buffer.from(courseJson.image).toString('base64');
+        if (courseData.image) {
+            courseData.image = Buffer.from(courseData.image).toString('base64');
         }
 
-        return courseJson;
+        courseData.percentage = courseData.Discount ? courseData.Discount.percentage : 0;
+
+        delete courseData.Discount;
+
+        return courseData;
     });
 }
+
+const updateCourse = async (courseId, courseData) => {
+    courseRepo.updateCourse(courseId, courseData);
+}
+
+const deleteCourse = async (courseId) => {
+    return await courseRepo.deleteCourse(courseId);
+ }
+
+ const getCourseById = async (id, transaction) => {
+    return await courseRepo.findById(id, transaction);
+  };
+  
+  const updateCourseSlots = async (id, delta, transaction) => {
+    return await courseRepo.updateSlots(id, delta, transaction);
+  };
 
 module.exports = {
     addCourse,
     getCourses,
-    getCoursesByTeacher
+    getCoursesByTeacher,
+    updateCourse,
+    deleteCourse,
+    getCourseById,
+    updateCourseSlots
 }

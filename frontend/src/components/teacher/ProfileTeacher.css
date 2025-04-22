@@ -79,7 +79,7 @@
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
     border-radius: 20px;
-    padding: 30px 0 0 30px;
+    padding: 30px 0 4% 30px;
     width: 30%;
     margin: 5% auto auto;
     display: flex;
@@ -103,6 +103,22 @@
     margin: 2.5% 0;
     background: transparent;
     overflow: hidden;
+    position: relative;
+}
+
+.profile-teacher .info-row .toggle-password-icon {
+    position: absolute;
+    z-index: 2;
+    justify-content: center;
+    right: 4%;
+    color: #d6bbfb;
+    font-size: 30px;
+    filter : drop-shadow(1px 1px 1px black);
+}
+
+.profile-teacher .info-row .toggle-password-icon:hover {
+    transition: 0.6s;
+    transform: scale(1.1);
 }
 
 .profile-teacher .info-icon {

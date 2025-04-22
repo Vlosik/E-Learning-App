@@ -98,6 +98,11 @@
     margin-right: 5%;
 }
 
+.student-home .left-side .discount-button:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
 .student-home .left-side .tag {
     color: white;
     transform: translateY(17.5%);
@@ -113,6 +118,7 @@
 }
 
 .student-home .search-fields .left-side .reset-icons:hover {
+    transition: 0.5s;
     transform: scale(1.1);
 }
 
@@ -182,23 +188,7 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-}
-
-.student-home .courses .course-card .star {
-    position: absolute;
-    right: 1px;
-    top: 1px;
-    z-index: 5;
-    color: gold;
-    font-size: 40px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-    border-radius: 0 12px 0 12px;
-    background-color: rgba(200, 200, 200, 0.6);
-}
-
-.student-home .courses .course-card .star:hover {
-    transform: scale(1.2);
-    transition: 0.5s;
+    border: 2px solid #EEEEFF;
 }
 
 .student-home .course-card.unavailable {
@@ -206,6 +196,46 @@
     pointer-events: none;
     filter: grayscale(75%);
     position: relative;
+}
+
+.student-home .course-card.highlight-discount {
+    border: 2px solid #d7aefb;
+    box-shadow: 0 4px 20px rgba(215, 174, 251, 0.4);
+    background: linear-gradient(145deg, #f6f0ff, #ffffff);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-home .course-card.highlight-discount::before {
+    content: "Sale";
+    position: absolute;
+    top: 12px;
+    left: -40px;
+    background: #c084fc;
+    color: white;
+    font-weight: bold;
+    padding: 5px 50px;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 12px;
+}
+
+.student-home .course-card .discount-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #d946ef;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.student-home .course-card.highlight-discount:hover {
+    transform: scale(1.05);
 }
 
 .student-home .courses .course-card:hover {

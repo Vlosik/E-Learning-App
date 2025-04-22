@@ -192,9 +192,8 @@ class CoursesStudent extends Component {
                 <div className="courses">
                     {this.getPaginatedCourses().length > 0 ? (
                         this.getPaginatedCourses().map((course) => (
-                            <div key={course.id} className={`course-card ${course.slots === 0 ? 'unavailable' : ''}`}
+                            <div key={course.id} className={`course-card `}
                                  role="button" onClick={() => this.handleGoToCourse(course)}>
-                                <CiStar className="star" role="button" onClick={this.handleAddFavourite}/>
                                 <img src={`data:image/png;base64,${course.image}`} alt={course.title} className="course-image"/>
                                 <h3 className="course-title">{course.title}</h3>
                             </div>

@@ -1,13 +1,10 @@
-import {Component} from "react";
+import { Component } from "react";
 import "./StudentCoursePage.css";
 import logo from "../../images/logo.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdOutlineInfo } from "react-icons/md";
-import { FaRegClock } from "react-icons/fa6";
-import { FaRegCalendar } from "react-icons/fa6";
+import { FaRegClock, FaRegCalendar, FaTag, FaUserGroup } from "react-icons/fa6";
 import { LuGlobe } from "react-icons/lu";
-import { FaTag } from "react-icons/fa6";
-import { FaUserGroup } from "react-icons/fa6";
 import { IoExitOutline } from "react-icons/io5";
 import history from "../../history";
 import axiosInstance from "../../axios";
@@ -16,43 +13,79 @@ class StudentCoursePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            course : JSON.parse(sessionStorage.getItem("studentCurrentCourse")),
-            user : JSON.parse(sessionStorage.getItem("currentUser")),
-        }
+            course: JSON.parse(sessionStorage.getItem("studentCurrentCourse")),
+            user: JSON.parse(sessionStorage.getItem("currentUser")),
+            enrolled: false
+        };
     }
+
+    componentDidMount() {
+        this.isEnrolled();
+    }
+
+    isEnrolled = () => {
+        const { course, user } = this.state;
+        axiosInstance
+            .get(`/api/enrolls/isEnrolled/in_${course.id}/as_${user.id}`)
+            .then(response => this.setState({ enrolled: response.data.enrolled }))
+            .catch(error => {
+                console.error("Error during enrollment check:", error);
+                alert(error.response.data.message);
+            });
+    };
 
     goToHomePage = () => {
-        window.history.back()
-    }
+        window.history.back();
+    };
 
     addEnroll = () => {
-        const {course, user} = this.state;
+        const { course, user } = this.state;
+        const enroll = { studentId: user.id, courseId: course.id };
 
-        const enroll = {
-            studentId : user.id,
-            courseId : course.id,
-        };
+        axiosInstance.post("/api/enrolls/create", enroll)
+            .then(() => {
+                history.push("/home/student");
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("Error during enrollment:", error);
+                alert(error.response.data.message);
+            });
+    };
 
-        axiosInstance.post("/api/enrolls/create", enroll).then((response) => {
-            history.push("/home/student");
-            window.location.reload();
-        }).catch((error) => {
-            console.error("Error during login:", error);
-            alert(error.response.data.message);
-        });
-    }
+    deleteEnroll = () => {
+        const { course, user } = this.state;
+        axiosInstance.delete(`/api/enrolls/deleteEnrolled/in_${course.id}/for_${user.id}`)
+            .then(() => {
+                history.push("/home/student");
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("Error during deletion:", error);
+                alert(error.response?.data?.message || "An error occurred.");
+            });
+    };
 
     render() {
+        const { course, enrolled } = this.state;
+        const hasDiscount = course.percentage > 0;
+        const discountedPrice = (course.price * (1 - course.percentage / 100)).toFixed(2);
+
         return (
             <div className="student-course-page">
                 <div className="navbar">
                     <div className="logo">
-                        <img src={logo} alt="Logo"/>
+                        <img src={logo} alt="Logo" />
                     </div>
                     <div className="search-field">
                         <div className="input-box">
-                            <input type="text" placeholder="Search" required value={this.state.search}
-                                   onChange={(e) => this.setState({search: e.target.value})}/>
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                required
+                                value={this.state.search}
+                                onChange={(e) => this.setState({ search: e.target.value })}
+                            />
                         </div>
                     </div>
                     <div className="lists">
@@ -64,34 +97,46 @@ class StudentCoursePage extends Component {
                         </ul>
                     </div>
                 </div>
-                <div className="course">
+
+                <div className={`course ${hasDiscount ? "discounted" : ""}`}>
+                    {hasDiscount && <div className="discount-ribbon">Sale</div>}
                     <div className="top-side">
-                        <img src={`data:image/png;base64,${this.state.course.image}`} alt={this.state.course.title} className="course-image"/>
+                        <img src={`data:image/png;base64,${course.image}`} alt={course.title} className="course-image" />
                         <div className="course-details">
-                            <IoExitOutline className="exit-icon" role="button" onClick={this.goToHomePage}/>
-                            <h1 className="course-title">{this.state.course.Title}</h1>
+                            <IoExitOutline className="exit-icon" role="button" onClick={this.goToHomePage} />
+                            <h1 className="course-title">{course.title}</h1>
                             <div className="course-stats">
-                                <h3 className="text stats-right"><FaRegClock className="icon"/> Sessions
-                                    : {this.state.course.sessions}</h3>
-                                <h3 className="text stats-right"><FaRegCalendar className="icon"/> Date
-                                    : {this.state.course.startDate} to {this.state.course.endDate}</h3>
-                                <h3 className="text stats-right"><LuGlobe className="icon"/> Language
-                                    : {this.state.course.language}</h3>
-                                <h3 className="text stats-right"><FaTag className="icon"/> Price
-                                    : {this.state.course.price} $</h3>
-                                <h3 className="text stats-right"><FaUserGroup className="icon"/> Slots Available
-                                    : {this.state.course.slots}</h3>
+                                <h3 className="text stats-right"><FaRegClock className="icon" /> Sessions: {course.sessions}</h3>
+                                <h3 className="text stats-right"><FaRegCalendar className="icon" /> Date: {course.startDate} to {course.endDate}</h3>
+                                <h3 className="text stats-right"><LuGlobe className="icon" /> Language: {course.language}</h3>
+                                <h3 className="text stats-right price-section">
+                                    <FaTag className="icon" /> Price:
+                                    {hasDiscount ? (
+                                        <>
+                                            <span className="old-price">{course.price} $</span>
+                                            <span className="new-price">{discountedPrice} $</span>
+                                        </>
+                                    ) : (
+                                        <span> {course.price} $</span>
+                                    )}
+                                </h3>
+                                <h3 className="text stats-right"><FaUserGroup className="icon" /> Slots Available: {course.slots}</h3>
                             </div>
                         </div>
                     </div>
+
                     <div className="bottom-side">
-                        <h2 className="text"><MdOutlineInfo className="icon"/> About this course</h2>
-                        <h1 className="text">• {this.state.course.description}</h1>
-                        <button className="enroll-link" onClick={this.addEnroll}>Enroll me</button>
+                        <h2 className="text"><MdOutlineInfo className="icon" /> About this course</h2>
+                        <h1 className="text">• {course.description}</h1>
+                        {enrolled ? (
+                            <button className="enroll-link" onClick={this.deleteEnroll}>Cancel Enrollment</button>
+                        ) : (
+                            <button className="enroll-link" onClick={this.addEnroll}>Enroll me</button>
+                        )}
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 

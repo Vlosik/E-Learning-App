@@ -79,6 +79,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 .teacher-adder .add-course .icon-header {
@@ -178,6 +179,21 @@
 }
 
 .teacher-adder .add-course .add-btn:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
+.teacher-adder .add-course .exit-icon {
+    position: absolute;
+    top : 1%;
+    right: 2%;
+    font-size: 40px;
+    z-index: 2;
+    color: #d6bbfb;
+}
+
+.teacher-adder .add-course .exit-icon:hover {
+    transition: 0.5s;
     transform: scale(1.1);
 }
 

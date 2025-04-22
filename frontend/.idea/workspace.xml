@@ -5,20 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0bde51-4f03-40a3-b2fc-c9ac30253a98" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/controller/courseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/controller/courseController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/controller/enrollController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/controller/enrollController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/model/Course.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/Course.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/model/Enroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/Enroll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/model/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/model/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/service/userService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/service/userService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/repo/courseRepo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/repo/courseRepo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/repo/enrollRepo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/repo/enrollRepo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/routes/courseRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/routes/courseRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/routes/enrollRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/routes/enrollRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/service/courseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/service/courseService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/service/enrollService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/service/enrollService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/data/courses.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/data/login.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/data/enroll.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/CoursePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/CoursePage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/CoursePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/CoursePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/ContactStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ContactStudent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/ContactStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ContactStudent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/CoursesStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/CoursesStudent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/CoursesStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/CoursesStudent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/ProfileStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ProfileStudent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/student/ProfileStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ProfileStudent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/StudentCoursePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentCoursePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/StudentCoursePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentCoursePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/StudentHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentHome.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/StudentHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/StatisticsTeacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/StatisticsTeacher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherHome.css" afterDir="false" />
@@ -33,8 +54,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -109,6 +130,13 @@
       <workItem from="1744880353372" duration="5182000" />
       <workItem from="1744892489318" duration="12000" />
       <workItem from="1744978149383" duration="11299000" />
+      <workItem from="1745069498261" duration="11690000" />
+      <workItem from="1745238422850" duration="16000" />
+      <workItem from="1745240435495" duration="14000" />
+      <workItem from="1745242553642" duration="8330000" />
+      <workItem from="1745275436702" duration="2635000" />
+      <workItem from="1745319199911" duration="10432000" />
+      <workItem from="1745330822970" duration="17000" />
     </task>
     <servers />
   </component>

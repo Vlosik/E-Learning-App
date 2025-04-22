@@ -4,8 +4,8 @@ import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import enrolls from "../data/enroll.json"
 import DatePicker from "react-datepicker";
+import axiosInstance from "../../axios";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -14,18 +14,36 @@ class StatisticsTeacher extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                { month: "March", students: 12 },
-                { month: "April", students: 18 },
-                { month: "May", students: 10 },
-                { month: "June", students: 23 },
-                { month: "July", students: 16 },
-                { month: "August", students: 9 }
-            ],
-            enrollments : enrolls
+            data: [],
+            enrollments : []
         }
     }
 
+    componentDidMount() {
+        this.getGraphic();
+        this.getEnrolls();
+    }
+
+    getGraphic() {
+        const teacher = JSON.parse(sessionStorage.getItem("currentTeacher"));
+        axiosInstance.get(`/api/enrolls/getGraphicStats/for_${teacher.id}`).then((response) => {
+            this.setState({data: response.data.enrolled});
+            console.log(response.data)
+        }).catch((error) => {
+            console.error("Error during login:", error);
+            alert(error.response.data.message);
+        });
+    }
+
+    getEnrolls() {
+        const teacher = JSON.parse(sessionStorage.getItem("currentTeacher"));
+        axiosInstance.get(`/api/enrolls/getEnrollsWithDate/for_${teacher.id}`).then((response) => {
+            this.setState({enrollments: response.data.enrolled});
+        }).catch((error) => {
+            console.error("Error during login:", error);
+            alert(error.response.data.message);
+        });
+    }
     getChartData = () => {
         return {
             labels: this.state.data.map(e => e.month),
@@ -33,7 +51,7 @@ class StatisticsTeacher extends Component {
                 {
                     label: 'Students Enrolled',
                     data: this.state.data.map(e => e.students),
-                    backgroundColor: 'rgba(102, 153, 255, 0.7)',
+                    backgroundColor: 'rgb(203,183,255)',
                     borderRadius: 6,
                 }
             ]

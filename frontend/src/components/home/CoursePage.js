@@ -25,6 +25,9 @@ class CoursePage extends Component {
     }
 
     render() {
+        const { course } = this.state;
+        const hasDiscount = course.percentage > 0;
+        const discountedPrice = (course.price * (1 - course.percentage / 100)).toFixed(2);
         return (
             <div className="course-page">
                 <div className="navbar">
@@ -46,25 +49,40 @@ class CoursePage extends Component {
                         </ul>
                     </div>
                 </div>
-                <div className="course">
+                <div className={`course ${hasDiscount ? "discounted" : ""}`}>
+                    {hasDiscount && <div className="discount-ribbon">Sale</div>}
                     <div className="top-side">
-                        <img src={`/${this.state.course.Image}`} alt={this.state.course.Title}
+                        <img src={`data:image/png;base64,${this.state.course.image}`} alt={this.state.course.title}
                              className="course-image"/>
                         <div className="course-details">
                             <IoExitOutline className="exit-icon" role="button" onClick={this.goToHomePage}/>
-                            <h1 className="course-title">{this.state.course.Title}</h1>
+                            <h1 className="course-title">{this.state.course.title}</h1>
                             <div className="course-stats">
-                                <h3 className="text stats-right"><FaRegClock className="icon"/> Sessions : {this.state.course.Sessions}</h3>
-                                <h3 className="text stats-right"><FaRegCalendar className="icon"/> Date : {this.state.course.StartDate} to {this.state.course.EndDate}</h3>
-                                <h3 className="text stats-right"><LuGlobe className="icon"/> Language : {this.state.course.Language}</h3>
-                                <h3 className="text stats-right"><FaTag className="icon"/> Price : {this.state.course.Price} $</h3>
-                                <h3 className="text stats-right"><FaUserGroup className="icon"/> Slots Available : {this.state.course.Slots}</h3>
+                                <h3 className="text stats-right"><FaRegClock className="icon"/> Sessions
+                                    : {this.state.course.sessions}</h3>
+                                <h3 className="text stats-right"><FaRegCalendar className="icon"/> Date
+                                    : {this.state.course.startDate} to {this.state.course.endDate}</h3>
+                                <h3 className="text stats-right"><LuGlobe className="icon"/> Language
+                                    : {this.state.course.language}</h3>
+                                <h3 className="text stats-right price-section">
+                                    <FaTag className="icon"/> Price:
+                                    {hasDiscount ? (
+                                        <>
+                                            <span className="old-price">{course.price} $</span>
+                                            <span className="new-price">{discountedPrice} $</span>
+                                        </>
+                                    ) : (
+                                        <span> {course.price} $</span>
+                                    )}
+                                </h3>
+                                <h3 className="text stats-right"><FaUserGroup className="icon"/> Slots Available
+                                    : {this.state.course.slots}</h3>
                             </div>
                         </div>
                     </div>
                     <div className="bottom-side">
                         <h2 className="text"><MdOutlineInfo className="icon"/> About this course</h2>
-                        <h1 className="text">• {this.state.course.Description}</h1>
+                        <h1 className="text">• {this.state.course.description}</h1>
                         <Link to="/login" className="enroll-link">Enroll me</Link>
                     </div>
                 </div>

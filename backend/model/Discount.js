@@ -1,21 +1,15 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../db');
 
-const Enroll = sequelize.define('Enroll', {
+const Discount = sequelize.define('Discount', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  studentId: {
+  percentage: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-        model: 'Users',         
-        key: 'id'               
-      },
-      onUpdate: 'CASCADE',      
-      onDelete: 'CASCADE'
   },
   courseId: {
     type: DataTypes.INTEGER,
@@ -26,14 +20,9 @@ const Enroll = sequelize.define('Enroll', {
       },
       onUpdate: 'CASCADE',      
       onDelete: 'CASCADE'
-  },
-  enrolledAt: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
   }
 }, {
   timestamps: false,
 });
 
-module.exports = Enroll;
+module.exports = Discount;

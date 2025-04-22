@@ -9,5 +9,8 @@ const upload = multer({ storage: storage });
 router.post('/insert', upload.single('image'), courseController.create);
 router.get('/getAll', courseController.getAll);
 router.get("/getAll/:id", courseController.getAllByTeacher);
+router.put("/update/withImage/:id", upload.single('image'), courseController.updateWithImage);
+router.put("/update/:id", upload.none(), courseController.updateWithoutImage);
+router.delete("/delete/:id", courseController.deleteCourse);
 
 module.exports = router;

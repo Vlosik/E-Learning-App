@@ -6,6 +6,7 @@ import { FaBookOpen, FaPen, FaInfoCircle, FaListUl, FaCalendarDay , FaClock, FaI
 import { FiUpload } from 'react-icons/fi';
 import axiosInstance from "../../axios";
 import history from "../../history";
+import {IoExitOutline} from "react-icons/io5";
 
 class TeacherAddCourse extends Component {
     constructor(props) {
@@ -55,6 +56,10 @@ class TeacherAddCourse extends Component {
         });
     }
 
+    goToHomePage = () => {
+        window.history.back()
+    }
+
     render() {
         return (
             <div className="teacher-adder">
@@ -78,6 +83,7 @@ class TeacherAddCourse extends Component {
                     </div>
                 </div>
                 <div className="add-course">
+                    <IoExitOutline className="exit-icon" role="button" onClick={this.goToHomePage}/>
                     <h1><FaBookOpen className="icon-header"/> Add a new Course</h1>
                     <form onSubmit={this.handleAddCourse} className="course-form">
                         <div className="left-side-add">

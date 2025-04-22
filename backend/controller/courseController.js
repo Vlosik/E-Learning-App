@@ -61,8 +61,103 @@ const getAllByTeacher = async (req, res) => {
   }
 };
 
+const updateWithImage = async (req, res) => {
+  const courseId = req.params.id;
+  try {
+    const {
+      title,
+      description,
+      field,
+      startDate,
+      endDate,
+      sessions,
+      slots,
+      language,
+      price,
+      teacher,
+    } = req.body;
+
+    if (!req.file) {
+        return res.status(400).json({ message: "Image file is required" });
+    }
+
+    const image = req.file.buffer;
+
+    const courseData = {
+      title,
+      description,
+      field,
+      startDate,
+      endDate,
+      sessions,
+      slots,
+      language,
+      price,
+      teacher,
+      image, 
+    }
+
+    await courseService.updateCourse(courseId,courseData);
+    res.status(201).json({ message : "Succes"});
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+    console.error(error.stack);
+  }
+};
+
+const updateWithoutImage = async (req, res) => {
+  const courseId = req.params.id;
+  try {
+    const {
+      title,
+      description,
+      field,
+      startDate,
+      endDate,
+      sessions,
+      slots,
+      language,
+      price,
+      teacher,
+    } = req.body;
+
+    const courseData = {
+      title,
+      description,
+      field,
+      startDate,
+      endDate,
+      sessions,
+      slots,
+      language,
+      price,
+      teacher,
+    }
+
+    await courseService.updateCourse(courseId,courseData);
+    res.status(201).json({ message : "Succes"});
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+    console.error(error.stack);
+  }
+};
+
+const deleteCourse = async (req, res) => {
+  const courseId = req.params.id;
+  try {
+    const course = await courseService.deleteCourse(courseId);
+    res.status(201).json(course);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+    console.error(error.stack);
+  }
+};
+
 module.exports = {
   create,
   getAll,
-  getAllByTeacher
+  getAllByTeacher,
+  updateWithImage,
+  updateWithoutImage,
+  deleteCourse
 };

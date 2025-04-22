@@ -73,6 +73,7 @@
     flex-direction: column;
     min-height: 0;
     overflow: hidden;
+    position: relative;
 }
 
 .course-page .course .icon {
@@ -192,9 +193,38 @@
     font-size: 20px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    border-color: transparent;
 }
 
 .course-page .course .bottom-side .enroll-link:hover {
     transition: 0.5s;
     transform: scale(1.1);
+}
+
+.course-page .course .discount-ribbon {
+    content: "Sale";
+    position: absolute;
+    top: 12px;
+    left: -40px;
+    background: #c084fc;
+    color: white;
+    font-weight: bold;
+    padding: 5px 50px;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    z-index: 2;
+}
+
+.course-page .course .price-section .old-price {
+    text-decoration: line-through;
+    color: #9ca3af;
+    margin-left: 8px;
+    font-weight: normal;
+}
+
+.course-page .course .price-section .new-price {
+    color: #e11d48;
+    font-weight: bold;
+    margin-left: 12px;
 }

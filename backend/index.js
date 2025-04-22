@@ -5,15 +5,19 @@ const app = express();
 const userRoutes = require('./routes/userRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const enrollRoutes = require('./routes/enrollRoutes');
+const discountRoutes = require('./routes/discountRoutes');
+const ollamaRoutes = require('./routes/ollamaRoutes');
 
 const { connect, sequelize } = require('./db');
-const {User, Course, Enroll} = require('./model');
+const {User, Course, Enroll, Discount} = require('./model');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/enrolls', enrollRoutes);
+app.use('/api/discounts', discountRoutes);
+app.use('/api/ollama', ollamaRoutes);
 
 const PORT = 3010;
 

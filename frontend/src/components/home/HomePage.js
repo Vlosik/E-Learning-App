@@ -107,9 +107,9 @@ class HomePage extends Component {
     }
 
     getPaginatedCourses = () => {
-        const { currentPage, coursesPerPage, courses, search, field, language,startDate,endDate } = this.state;
+        const { currentPage, coursesPerPage, courses, search, field, language,startDate,endDate,discountActive } = this.state;
 
-        const filteredCourses = courses.filter(course => {
+        let filteredCourses = courses.filter(course => {
             const matchesTitle = course.title.toLowerCase().includes(search.toLowerCase());
             const matchesField = field === '' || course.field.toLowerCase() === field.toLowerCase();
 
@@ -124,6 +124,10 @@ class HomePage extends Component {
 
             return matchesTitle && matchesField && matchesDate;
         });
+
+        if (discountActive) {
+            filteredCourses = filteredCourses.filter(course => course.percentage > 0);
+        }
 
         const sortedCourses = filteredCourses.sort((a, b) => {
             if (a.slots === 0 && b.slots !== 0) return 1;
@@ -144,6 +148,11 @@ class HomePage extends Component {
         return sortedCourses.slice(startIndex, endIndex);
     };
 
+    handleDiscount = () => {
+        this.setState(prevState => ({
+            discountActive: !prevState.discountActive
+        }));
+    }
 
     render() {
         return (
@@ -169,7 +178,7 @@ class HomePage extends Component {
                 </div>
                 <div className="search-fields">
                     <div className="left-side">
-                        <button className="discount-button"><FaTag className="tag"/> Discount</button>
+                        <button className="discount-button" onClick={this.handleDiscount}><FaTag className="tag"/> Discount</button>
                         <select value={this.state.field} onChange={this.handleFieldChange} className="select-field">
                             <option value="">Field</option>
                             <option value="economic">Economic</option>
@@ -194,12 +203,16 @@ class HomePage extends Component {
                 <div className="courses">
                     {this.getPaginatedCourses().length > 0 ? (
                         this.getPaginatedCourses().map((course) => (
-                            <div key={course.id} className={`course-card ${course.slots === 0 ? 'unavailable' : ''}`}
+                            <div key={course.id} className=
+                                {`course-card ${course.slots === 0 ? 'unavailable' : ''}
+                                     ${course.percentage > 0 ? 'highlight-discount' : ''}`}
                                  role="button" onClick={() => this.handleGoToCourse(course)}>
-                                <CiStar className="star" role="button" onClick={this.handleAddFavourite}/>
                                 <img src={`data:image/png;base64,${course.image}`} alt={course.title}
                                      className="course-image"/>
                                 <h3 className="course-title">{course.title}</h3>
+                                {course.percentage > 0 && (
+                                    <div className="discount-badge">{course.percentage}% OFF</div>
+                                )}
                             </div>
                         ))
                     ) : (

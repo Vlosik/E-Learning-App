@@ -10,7 +10,6 @@ const Course = sequelize.define('Course', {
   title: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    unique: true,
   },
   description: {
     type: DataTypes.TEXT,
@@ -60,6 +59,12 @@ const Course = sequelize.define('Course', {
   },
 }, {
   timestamps: false,
+  indexes: [
+    {
+      unique: true,
+      fields: ['title'],
+    },
+  ],
 });
 
 module.exports = Course;

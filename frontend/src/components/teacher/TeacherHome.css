@@ -209,6 +209,29 @@
     position: relative;
 }
 
+.teacher-courses .course-card.highlight-discount {
+    border: 2px solid #d7aefb;
+    box-shadow: 0 4px 20px rgba(215, 174, 251, 0.4);
+    background: linear-gradient(145deg, #f6f0ff, #ffffff);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-courses .course-card.highlight-discount::before {
+    content: "Sale";
+    position: absolute;
+    top: 12px;
+    left: -40px;
+    background: #c084fc;
+    color: white;
+    font-weight: bold;
+    padding: 5px 50px;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 12px;
+}
+
 .teacher-courses .courses .course-card:hover {
     transform: scale(1.05);
     transition: 0.75s;

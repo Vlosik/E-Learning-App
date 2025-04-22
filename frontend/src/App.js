@@ -14,7 +14,8 @@ import TeacherHome from "./components/teacher/TeacherHome";
 import ProfileTeacher from "./components/teacher/ProfileTeacher";
 import ContactTeacher from "./components/teacher/ContactTeacher";
 import TeacherAddCourse from "./components/teacher/TeacherAddCourse";
-import StatisticsTeacher from "./components/teacher/StatisticsTeacher"
+import StatisticsTeacher from "./components/teacher/StatisticsTeacher";
+import EditCourse from "./components/teacher/EditCourse";
 function App() {
   return (
       <Router>
@@ -34,6 +35,7 @@ function App() {
             <Route path="/home/teacher/contact" element={<ContactTeacher />}></Route>
             <Route path="/home/teacher/add" element={<TeacherAddCourse />}></Route>
             <Route path="/home/teacher/statistics" element={<StatisticsTeacher />}></Route>
+            <Route path="/home/teacher/editCourse" element={<EditCourse />}></Route>
         </Routes>
       </Router>
   );

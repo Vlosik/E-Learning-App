@@ -2,15 +2,22 @@ import {Component} from "react";
 import "./ProfileTeacher.css";
 import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
-import { FaUser, FaLock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { FaUser, FaLock, FaEnvelope, FaPhoneAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 
 class ProfileTeacher extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user : JSON.parse(sessionStorage.getItem("currentTeacher")),
+            showPassword: false
         }
     }
+
+    togglePasswordVisibility = () => {
+        this.setState((prevState) => ({
+            showPassword: !prevState.showPassword
+        }));
+    };
 
     render() {
         return (
@@ -42,7 +49,24 @@ class ProfileTeacher extends Component {
                     </div>
                     <div className="info-row">
                         <FaLock className="info-icon"/>
-                        <input type="text" value={this.state.user?.password || ""} readOnly/>
+                        <input
+                            type={this.state.showPassword ? "text" : "password"}
+                            value={this.state.user?.password || ""}
+                            readOnly
+                        />
+                        {this.state.showPassword ? (
+                            <FaEyeSlash
+                                className="toggle-password-icon"
+                                onClick={this.togglePasswordVisibility}
+                                role="button"
+                            />
+                        ) : (
+                            <FaEye
+                                className="toggle-password-icon"
+                                onClick={this.togglePasswordVisibility}
+                                role="button"
+                            />
+                        )}
                     </div>
                     <div className="info-row">
                         <FaEnvelope className="info-icon"/>
@@ -52,7 +76,6 @@ class ProfileTeacher extends Component {
                         <FaPhoneAlt className="info-icon"/>
                         <input type="text" value={this.state.user?.phone || "+40 721 123 456"} readOnly/>
                     </div>
-                    <button className="edit-button">Edit</button>
                 </div>
                 <Link to="/login" className="sign-out">Sign Out</Link>
             </div>

@@ -10,7 +10,6 @@ import { MdRefresh } from "react-icons/md";
 import history from "../../history";
 import { GrDocumentText } from "react-icons/gr";
 import axiosInstance from "../../axios";
-import {CiStar} from "react-icons/ci";
 
 class TeacherHome extends Component {
     constructor(props) {
@@ -101,9 +100,21 @@ class TeacherHome extends Component {
     };
 
     handleGoToCourse = (course) => {
-        sessionStorage.setItem("studentCurrentCourse", JSON.stringify(course));
-        history.push("/home/course/student");
+        sessionStorage.setItem("currentEditCourse", JSON.stringify(course));
+        history.push("/home/teacher/editCourse");
         window.location.reload();
+    }
+
+    deleteCourse = (courseId) => {
+        axiosInstance.delete(`/api/courses/delete/${courseId}`)
+            .then((response) => {
+                history.push("/home/teacher");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error("Error during deletion:", error);
+                alert(error.response?.data?.message || "An error occurred.");
+            });
     }
 
     handleAddCourse = () => {
@@ -112,9 +123,9 @@ class TeacherHome extends Component {
     }
 
     getPaginatedCourses = () => {
-        const { currentPage, coursesPerPage, courses, search, field, language,startDate,endDate } = this.state;
+        const { currentPage, coursesPerPage, courses, search, field, language,startDate,endDate,discountActive } = this.state;
 
-        const filteredCourses = courses.filter(course => {
+        let filteredCourses = courses.filter(course => {
             const matchesTitle = course.title.toLowerCase().includes(search.toLowerCase());
             const matchesField = field === '' || course.field.toLowerCase() === field.toLowerCase();
 
@@ -129,6 +140,10 @@ class TeacherHome extends Component {
 
             return matchesTitle && matchesField && matchesDate;
         });
+
+        if (discountActive) {
+            filteredCourses = filteredCourses.filter(course => course.percentage > 0);
+        }
 
         const sortedCourses = filteredCourses.sort((a, b) => {
             if (a.slots === 0 && b.slots !== 0) return 1;
@@ -148,6 +163,12 @@ class TeacherHome extends Component {
         const endIndex = startIndex + coursesPerPage;
         return sortedCourses.slice(startIndex, endIndex);
     };
+
+    handleDiscount = () => {
+        this.setState(prevState => ({
+            discountActive: !prevState.discountActive
+        }));
+    }
 
 
     render() {
@@ -174,7 +195,7 @@ class TeacherHome extends Component {
                 </div>
                 <div className="search-fields">
                     <div className="left-side">
-                        <button className="discount-button"><FaTag className="tag"/> Discount</button>
+                        <button className="discount-button" onClick={this.handleDiscount}><FaTag className="tag"/> Discount</button>
                         <select value={this.state.field} onChange={this.handleFieldChange} className="select-field">
                             <option value="">Field</option>
                             <option value="economic">Economic</option>
@@ -194,9 +215,12 @@ class TeacherHome extends Component {
                 <div className="courses">
                     {this.getPaginatedCourses().length > 0 ? (
                         this.getPaginatedCourses().map((course) => (
-                            <div key={course.id} className={`course-card `} role="button"
+                            <div key={course.id} className={`course-card ${course.percentage > 0 ? 'highlight-discount' : ''}`} role="button"
                                  onClick={() => this.handleGoToCourse(course)}>
-                                <HiMiniTrash className="delete" role="button" onClick={this.handleAddFavourite}/>
+                                <HiMiniTrash className="delete" role="button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    this.deleteCourse(course.id);
+                                }}/>
                                 <img src={`data:image/png;base64,${course.image}`} alt={course.title}
                                      className="course-image"/>
                                 <h3 className="course-title">{course.title}</h3>
