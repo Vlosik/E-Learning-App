@@ -5,45 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b0bde51-4f03-40a3-b2fc-c9ac30253a98" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/controller/courseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/controller/courseController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/controller/enrollController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/controller/enrollController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/model/Course.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/Course.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/model/Enroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/Enroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/model/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/model/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/model/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/repo/courseRepo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/repo/courseRepo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/repo/enrollRepo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/repo/enrollRepo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/routes/courseRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/routes/courseRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/routes/enrollRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/routes/enrollRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/service/courseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/service/courseService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/service/enrollService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/service/enrollService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/data/enroll.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/CoursePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/CoursePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/CoursePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/CoursePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/ContactStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ContactStudent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/LoginPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/ContactStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ContactStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/CoursesStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/CoursesStudent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/CoursesStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/CoursesStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/ProfileStudent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ProfileStudent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/ProfileStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/ProfileStudent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/StudentCoursePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentCoursePage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/student/StudentCoursePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentCoursePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/StudentHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentHome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/StudentHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/student/StudentHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/teacher/EditCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/EditCourse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/ProfileTeacher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/StatisticsTeacher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/StatisticsTeacher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherAddCourse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherHome.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/teacher/TeacherHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/teacher/TeacherHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -75,7 +51,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/An_4/II/PWEB/frontend/src/images/courses&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/An_4/II/DISI/30644_Badea_Ioana_TravelPoints/frontend&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -137,6 +113,8 @@
       <workItem from="1745275436702" duration="2635000" />
       <workItem from="1745319199911" duration="10432000" />
       <workItem from="1745330822970" duration="17000" />
+      <workItem from="1745485574935" duration="299000" />
+      <workItem from="1746539861865" duration="8918000" />
     </task>
     <servers />
   </component>

@@ -18,7 +18,8 @@ class ContactStudent extends Component {
             hour: 'Mon-Fri : 9AM - 6PM',
             isChatOpen: false,
             newMessage: '',
-            chat: []
+            chat: [],
+            token : sessionStorage.getItem("token")
         };
         this.chatEndRef = React.createRef();
     }
@@ -34,13 +35,17 @@ class ContactStudent extends Component {
     };
 
     sendMessage = () => {
-        const { newMessage, chat } = this.state;
+        const { newMessage, chat, token } = this.state;
 
         if (newMessage.trim() !== '') {
             const updatedChat = [...chat, { sender: 'Student', message: newMessage }];
 
             this.setState({ chat: updatedChat, newMessage: '' }, () => {
-                axiosInstance.post("/api/ollama/chat", { chat: updatedChat })
+                axiosInstance.post("/api/ollama/chat", { chat: updatedChat },{
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
                     .then((response) => {
                         this.setState(prevState => ({
                             chat: [...prevState.chat, { sender: 'AI', message: response.data.response }]

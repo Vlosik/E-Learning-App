@@ -6,6 +6,7 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import DatePicker from "react-datepicker";
 import axiosInstance from "../../axios";
+import {jwtDecode} from "jwt-decode";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -15,7 +16,8 @@ class StatisticsTeacher extends Component {
         super(props);
         this.state = {
             data: [],
-            enrollments : []
+            enrollments : [],
+
         }
     }
 
@@ -25,8 +27,14 @@ class StatisticsTeacher extends Component {
     }
 
     getGraphic() {
-        const teacher = JSON.parse(sessionStorage.getItem("currentTeacher"));
-        axiosInstance.get(`/api/enrolls/getGraphicStats/for_${teacher.id}`).then((response) => {
+        const token = sessionStorage.getItem("token");
+        const decodedToken = jwtDecode(token);
+        const teacherId = decodedToken.id;
+        axiosInstance.get(`/api/enrolls/getGraphicStats/for_${teacherId}`,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response) => {
             this.setState({data: response.data.enrolled});
             console.log(response.data)
         }).catch((error) => {
@@ -36,8 +44,14 @@ class StatisticsTeacher extends Component {
     }
 
     getEnrolls() {
-        const teacher = JSON.parse(sessionStorage.getItem("currentTeacher"));
-        axiosInstance.get(`/api/enrolls/getEnrollsWithDate/for_${teacher.id}`).then((response) => {
+        const token = sessionStorage.getItem("token");
+        const decodedToken = jwtDecode(token);
+        const teacherId = decodedToken.id;
+        axiosInstance.get(`/api/enrolls/getEnrollsWithDate/for_${teacherId}`,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response) => {
             this.setState({enrollments: response.data.enrolled});
         }).catch((error) => {
             console.error("Error during login:", error);

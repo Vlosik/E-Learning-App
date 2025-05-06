@@ -10,6 +10,7 @@ import { MdRefresh } from "react-icons/md";
 import history from "../../history";
 import { GrDocumentText } from "react-icons/gr";
 import axiosInstance from "../../axios";
+import {jwtDecode} from "jwt-decode";
 
 class TeacherHome extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class TeacherHome extends Component {
             currentPage: 1,
             coursesPerPage: 6,
             language : '',
-            teacher : JSON.parse(sessionStorage.getItem("currentTeacher"))
+            token: sessionStorage.getItem("token"),
         }
     }
 
@@ -61,8 +62,15 @@ class TeacherHome extends Component {
     }
 
     getTeacherCourses() {
-        const teacherId = this.state.teacher.id;
-        axiosInstance.get(`/api/courses/getAll/${teacherId}`).then((response) => {
+        const {token} = this.state;
+        const decodedToken = jwtDecode(token);
+        const teacher = decodedToken.id;
+
+        axiosInstance.get(`/api/courses/getAll/${teacher}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response) => {
             this.setState({courses: response.data});
             console.log(response.data)
         }).catch((error) => {

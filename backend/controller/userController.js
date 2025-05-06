@@ -1,4 +1,6 @@
 const userService = require('../service/userService');
+const jwt = require('jsonwebtoken');
+const SECRET = process.env.JWT_SECRET;
 
 const register = async (req, res) => {
   try {
@@ -12,7 +14,16 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const user = await userService.verifyUser(req.body);
-        res.status(201).json({ message: 'User found.', user });
+        const token = jwt.sign({
+          id: user.id,
+          username: user.username,
+          password: user.password,
+          email: user.email,
+          phone: user.phone,
+          role: user.role
+          }, SECRET, { expiresIn: '1h'}
+        );
+        res.status(201).json({ message: 'User found.', token });
       } catch (error) {
         res.status(400).json({ message: error.message });
       }

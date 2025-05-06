@@ -4,6 +4,7 @@ import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
 import history from "../../history";
 import axiosInstance from "../../axios";
+import {jwtDecode} from "jwt-decode";
 class LoginPage extends Component {
     constructor(props) {
         super(props);
@@ -23,15 +24,24 @@ class LoginPage extends Component {
         }
 
         axiosInstance.post("/api/users/login", user).then((response) => {
-            if(response.data.user.role === "student"){
-                sessionStorage.setItem("currentUser", JSON.stringify(response.data.user));
-                history.push("/home/student");
-                window.location.reload();
-            }
-            else{
-                sessionStorage.setItem("currentTeacher", JSON.stringify(response.data.user));
-                history.push("/home/teacher");
-                window.location.reload();
+            if (response.data && response.data.token) {
+                const token = response.data.token;
+
+                const decodedToken = jwtDecode(token);
+                const role = decodedToken.role;
+
+                if(role === "student"){
+                    sessionStorage.setItem("token", token);
+                    sessionStorage.setItem("role", role);
+                    history.push("/home/student");
+                    window.location.reload();
+                }
+                else{
+                    sessionStorage.setItem("token", token);
+                    sessionStorage.setItem("role", role);
+                    history.push("/home/teacher");
+                    window.location.reload();
+                }
             }
         }).catch((error) => {
             console.error("Error during login:", error);

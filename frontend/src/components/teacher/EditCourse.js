@@ -8,12 +8,13 @@ import axiosInstance from "../../axios";
 import history from "../../history";
 import {IoExitOutline} from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
+import {jwtDecode} from "jwt-decode";
 
 class EditCourse extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teacher: JSON.parse(sessionStorage.getItem("currentTeacher")),
+            token : sessionStorage.getItem("token"),
             title: "",
             description: "",
             field: "",
@@ -58,10 +59,15 @@ class EditCourse extends Component {
     }
 
     getDiscount = () => {
+        const {token} = this.state;
         const courseData = sessionStorage.getItem("currentEditCourse");
         if (courseData) {
             const course = JSON.parse(courseData);
-            axiosInstance.get(`/api/discounts/getDiscount/by=${course.id}`).then((response) => {
+            axiosInstance.get(`/api/discounts/getDiscount/by=${course.id}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((response) => {
                 if(response.data){
                     this.setState({ discount : response.data.percentage, editDiscount : true, discountId : response.data.id});
                 }
@@ -74,7 +80,10 @@ class EditCourse extends Component {
 
     handleEditCourse = (e) => {
         e.preventDefault()
-        const { title, description, field, startDate, finishDate, sessions, slots, language, price, image, courseId} = this.state;
+        const { title, description, field, startDate, finishDate, sessions, slots, language, price, image, courseId, token} = this.state;
+
+        const decodedToken = jwtDecode(token);
+        const teacherId = decodedToken.id;
 
         const formDataPut = new FormData();
         formDataPut.append('title', title);
@@ -86,13 +95,14 @@ class EditCourse extends Component {
         formDataPut.append('slots', slots);
         formDataPut.append('language', language);
         formDataPut.append('price', price);
-        formDataPut.append('teacher', this.state.teacher.id);
+        formDataPut.append('teacher', teacherId);
 
         if(image instanceof File){
             formDataPut.append('image', image);
             axiosInstance.put(`/api/courses/update/withImage/${courseId}`, formDataPut, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
                 }
             }).then((response) => {
                 history.push("/home/teacher");
@@ -104,7 +114,8 @@ class EditCourse extends Component {
         }else{
             axiosInstance.put(`/api/courses/update/${courseId}`, formDataPut, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
                 }
             }).then((response) => {
                 history.push("/home/teacher");
@@ -118,13 +129,17 @@ class EditCourse extends Component {
     }
 
     handleAddDiscount = () => {
-        const {discount,courseId} = this.state;
+        const {discount, courseId, token} = this.state;
         const discountData = {
             percentage : discount,
             courseId
         }
 
-        axiosInstance.post(`/api/discounts/create`,discountData).then((response) => {
+        axiosInstance.post(`/api/discounts/create`,discountData,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response) => {
             console.log(response.data);
             history.push("/home/teacher");
             window.location.reload();
@@ -135,9 +150,13 @@ class EditCourse extends Component {
     }
 
     handleUpdateDiscount = () => {
-        const {discountId,discount} = this.state;
+        const {discountId,discount,token} = this.state;
 
-        axiosInstance.put(`/api/discounts/update/${discountId}-${discount}`).then((response) => {
+        axiosInstance.put(`/api/discounts/update/${discountId}-${discount}`,{},{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response) => {
             history.push("/home/teacher");
             window.location.reload();
         }).catch((error) => {
@@ -147,9 +166,13 @@ class EditCourse extends Component {
     }
 
     handleDelete = () => {
-        const {discountId} = this.state;
+        const {discountId,token} = this.state;
 
-        axiosInstance.delete(`/api/discounts/delete/${discountId}`)
+        axiosInstance.delete(`/api/discounts/delete/${discountId}`,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
             .then((response) => {
                 history.push("/home/teacher");
                 window.location.reload();

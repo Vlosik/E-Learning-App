@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -19,7 +21,7 @@ app.use('/api/enrolls', enrollRoutes);
 app.use('/api/discounts', discountRoutes);
 app.use('/api/ollama', ollamaRoutes);
 
-const PORT = 3010;
+const PORT = process.env.PORT
 
 const start = async () => {
   await connect();

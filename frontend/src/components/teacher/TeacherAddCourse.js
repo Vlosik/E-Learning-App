@@ -7,12 +7,13 @@ import { FiUpload } from 'react-icons/fi';
 import axiosInstance from "../../axios";
 import history from "../../history";
 import {IoExitOutline} from "react-icons/io5";
+import {jwtDecode} from "jwt-decode";
 
 class TeacherAddCourse extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teacher: JSON.parse(sessionStorage.getItem("currentTeacher")),
+            token : sessionStorage.getItem("token"),
             title: "",
             description: "",
             field: "",
@@ -27,7 +28,10 @@ class TeacherAddCourse extends Component {
     }
 
     handleAddCourse = () => {
-        const { title, description, field, startDate, finishDate, sessions, slots, language, price, image} = this.state;
+        const { title, description, field, startDate, finishDate, sessions, slots, language, price, image, token} = this.state;
+
+        const decodedToken = jwtDecode(token);
+        const teacherId = decodedToken.id;
 
         const formData = new FormData();
         formData.append('title', title);
@@ -40,12 +44,13 @@ class TeacherAddCourse extends Component {
         formData.append('language', language);
         formData.append('price', price);
         formData.append('image', image);
-        formData.append('teacher', this.state.teacher.id);
+        formData.append('teacher', teacherId);
 
         console.log(formData);
         axiosInstance.post("/api/courses/insert", formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                     Authorization: `Bearer ${token}`
                 }
             }).then((response) => {
             history.push("/home/teacher");

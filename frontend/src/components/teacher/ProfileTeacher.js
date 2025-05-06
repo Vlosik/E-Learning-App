@@ -3,14 +3,32 @@ import "./ProfileTeacher.css";
 import logo from "../../images/logo.png";
 import {Link} from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope, FaPhoneAlt, FaEye, FaEyeSlash } from "react-icons/fa";
+import {jwtDecode} from "jwt-decode";
 
 class ProfileTeacher extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user : JSON.parse(sessionStorage.getItem("currentTeacher")),
+            user : {},
             showPassword: false
         }
+    }
+
+    componentDidMount() {
+        this.getUserDetails();
+    }
+
+    getUserDetails = () => {
+        const token = sessionStorage.getItem("token");
+        const decodedToken = jwtDecode(token);
+        const userInfo = {
+            username : decodedToken.username,
+            password : decodedToken.password,
+            email : decodedToken.email,
+            phone : decodedToken.phone
+        }
+
+        this.setState({user : userInfo});
     }
 
     togglePasswordVisibility = () => {

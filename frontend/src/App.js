@@ -16,6 +16,7 @@ import ContactTeacher from "./components/teacher/ContactTeacher";
 import TeacherAddCourse from "./components/teacher/TeacherAddCourse";
 import StatisticsTeacher from "./components/teacher/StatisticsTeacher";
 import EditCourse from "./components/teacher/EditCourse";
+import ProtectedRoute from "./ProtectedRoute";
 function App() {
   return (
       <Router>
@@ -25,17 +26,72 @@ function App() {
             <Route path="/contact" element={<ContactPage />}></Route>
             <Route path="/register" element={<RegisterPage />}></Route>
             <Route path="/course" element={<CoursePage />}></Route>
-            <Route path="/home/student" element={<StudentHome />}></Route>
-            <Route path="/home/course/student" element={<StudentCoursePage />}></Route>
-            <Route path="/home/student/profile" element={<ProfileStudent />}></Route>
-            <Route path="/home/student/contact" element={<ContactStudent />}></Route>
-            <Route path="/home/student/courses" element={<CoursesStudent />}></Route>
-            <Route path="/home/teacher" element={<TeacherHome />}></Route>
-            <Route path="/home/teacher/profile" element={<ProfileTeacher />}></Route>
-            <Route path="/home/teacher/contact" element={<ContactTeacher />}></Route>
-            <Route path="/home/teacher/add" element={<TeacherAddCourse />}></Route>
-            <Route path="/home/teacher/statistics" element={<StatisticsTeacher />}></Route>
-            <Route path="/home/teacher/editCourse" element={<EditCourse />}></Route>
+            <Route
+                path="/home/student"
+                element={
+                    <ProtectedRoute element={<StudentHome />} allowedRoles={['student']}/>
+                }
+            />
+            <Route
+                path="/home/course/student"
+                element={
+                    <ProtectedRoute element={<StudentCoursePage />} allowedRoles={['student']}/>
+                }
+            />
+            <Route
+                path="/home/student/profile"
+                element={
+                    <ProtectedRoute element={<ProfileStudent />} allowedRoles={['student']}/>
+                }
+            />
+            <Route
+                path="/home/student/contact"
+                element={
+                    <ProtectedRoute element={<ContactStudent />} allowedRoles={['student']}/>
+                }
+            />
+            <Route
+                path="/home/student/courses"
+                element={
+                    <ProtectedRoute element={<CoursesStudent />} allowedRoles={['student']}/>
+                }
+            />
+            <Route
+                path="/home/teacher"
+                element={
+                    <ProtectedRoute element={<TeacherHome />} allowedRoles={['teacher']}/>
+                }
+            />
+            <Route
+                path="/home/teacher/profile"
+                element={
+                    <ProtectedRoute element={<ProfileTeacher />} allowedRoles={['teacher']}/>
+                }
+            />
+            <Route
+                path="/home/teacher/contact"
+                element={
+                    <ProtectedRoute element={<ContactTeacher />} allowedRoles={['teacher']}/>
+                }
+            />
+            <Route
+                path="/home/teacher/add"
+                element={
+                    <ProtectedRoute element={<TeacherAddCourse />} allowedRoles={['teacher']}/>
+                }
+            />
+            <Route
+                path="/home/teacher/statistics"
+                element={
+                    <ProtectedRoute element={<StatisticsTeacher />} allowedRoles={['teacher']}/>
+                }
+            />
+            <Route
+                path="/home/teacher/editCourse"
+                element={
+                    <ProtectedRoute element={<EditCourse />} allowedRoles={['teacher']}/>
+                }
+            />
         </Routes>
       </Router>
   );

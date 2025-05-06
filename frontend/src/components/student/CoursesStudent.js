@@ -6,10 +6,10 @@ import { FaTag } from "react-icons/fa6";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { MdRefresh } from "react-icons/md";
-import { CiStar } from "react-icons/ci";
 import history from "../../history";
 import CalendarPicker from "../home/CalendarPicker";
 import axiosInstance from "../../axios";
+import {jwtDecode} from "jwt-decode";
 
 class CoursesStudent extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class CoursesStudent extends Component {
             currentPage: 1,
             coursesPerPage: 6,
             language: "",
-            user : JSON.parse(sessionStorage.getItem("currentUser"))
+            token : sessionStorage.getItem("token")
         }
     }
 
@@ -41,9 +41,14 @@ class CoursesStudent extends Component {
     }
 
     getUserCourses() {
-        const {user} = this.state;
-        const studentId = user.id;
-        axiosInstance.get(`/api/enrolls/getEnrolls/${studentId}`).then((response) => {
+        const {token} = this.state;
+        const decodedToken = jwtDecode(token);
+        const studentId = decodedToken.id;
+        axiosInstance.get(`/api/enrolls/getEnrolls/${studentId}`,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }).then((response) => {
             this.setState({ courses: response.data });
         }).catch((error) => {
             console.error("Error during login:", error);

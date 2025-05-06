@@ -8,13 +8,14 @@ import { LuGlobe } from "react-icons/lu";
 import { IoExitOutline } from "react-icons/io5";
 import history from "../../history";
 import axiosInstance from "../../axios";
+import {jwtDecode} from "jwt-decode";
 
 class StudentCoursePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             course: JSON.parse(sessionStorage.getItem("studentCurrentCourse")),
-            user: JSON.parse(sessionStorage.getItem("currentUser")),
+            token : sessionStorage.getItem("token"),
             enrolled: false
         };
     }
@@ -24,9 +25,15 @@ class StudentCoursePage extends Component {
     }
 
     isEnrolled = () => {
-        const { course, user } = this.state;
+        const { course, token } = this.state;
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
         axiosInstance
-            .get(`/api/enrolls/isEnrolled/in_${course.id}/as_${user.id}`)
+            .get(`/api/enrolls/isEnrolled/in_${course.id}/as_${userId}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
             .then(response => this.setState({ enrolled: response.data.enrolled }))
             .catch(error => {
                 console.error("Error during enrollment check:", error);
@@ -39,10 +46,16 @@ class StudentCoursePage extends Component {
     };
 
     addEnroll = () => {
-        const { course, user } = this.state;
-        const enroll = { studentId: user.id, courseId: course.id };
+        const { course, token } = this.state;
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        const enroll = { studentId: userId, courseId: course.id };
 
-        axiosInstance.post("/api/enrolls/create", enroll)
+        axiosInstance.post("/api/enrolls/create", enroll, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
             .then(() => {
                 history.push("/home/student");
                 window.location.reload();
@@ -54,8 +67,14 @@ class StudentCoursePage extends Component {
     };
 
     deleteEnroll = () => {
-        const { course, user } = this.state;
-        axiosInstance.delete(`/api/enrolls/deleteEnrolled/in_${course.id}/for_${user.id}`)
+        const { course, token } = this.state;
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.id;
+        axiosInstance.delete(`/api/enrolls/deleteEnrolled/in_${course.id}/for_${userId}`,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
             .then(() => {
                 history.push("/home/student");
                 window.location.reload();
